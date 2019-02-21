@@ -9,13 +9,19 @@ typedef at_hashmap_t at_hashset_t;
 extern "C" {
 #endif
 
-at_hashset_t *hashset_new(int);
+at_hashset_t *hashset_new(int, at_type_t);
 
-at_boolean_t hashset_insert(at_hashset_t *, at_entry_t);
+void hashset_set_hash_func(at_hashset_t *, hash_func);
 
-at_boolean_t hashset_iscontain(at_hashset_t *, at_entry_t);
+void hashset_set_equals_func(at_hashset_t *, equals_func);
 
-at_boolean_t hashset_remove(at_hashset_t *, at_entry_t);
+void hashset_set_free_func(at_hashset_t *, free_func);
+
+at_boolean_t hashset_insert(at_hashset_t *, void *);
+
+at_boolean_t hashset_iscontain(at_hashset_t *, void *);
+
+at_boolean_t hashset_remove(at_hashset_t *, void *);
 
 const char *hashset_error();
 
