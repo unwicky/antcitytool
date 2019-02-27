@@ -1,11 +1,3 @@
-/**
-* hashtable:key type can be long(int), double(float),char *(not NULL),
-*           value type can be long(int), double(float), char * and any object type,
-*           if value is an object, you can specify two functions:copyFunc-to copy an 
-*           object value to hashtable;freeFunc-to release the memory of the object.
-*           If no copyFunc specified, "=" will be used; if no freeFunc specified, we
-*           just "free" the object
-**/
 #ifndef AT_HASHMAP_H_
 #define AT_HASHMAP_H_
 
@@ -19,7 +11,7 @@
 
 typedef unsigned long (*hash_func)(void *);
 typedef at_boolean_t (*equals_func)(void *, void *);
-typedef void (*free_func)(void *);
+//typedef void (*free_func)(void *);
 
 typedef enum {
     INTTYPE = 1,
@@ -78,9 +70,9 @@ void hashmap_set_key_hash_func(at_hashmap_t *, hash_func);
 
 void hashmap_set_key_equals_func(at_hashmap_t *, equals_func);
 
-void hashmap_set_key_free_func(at_hashmap_t *, free_func);
+/*void hashmap_set_key_free_func(at_hashmap_t *, free_func);
 
-void hashmap_set_val_free_func(at_hashmap_t *, free_func);
+void hashmap_set_val_free_func(at_hashmap_t *, free_func);*/
 
 void hashmap_setloadfactor(at_hashmap_t *, double);
 

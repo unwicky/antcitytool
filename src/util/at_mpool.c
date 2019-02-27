@@ -1,10 +1,3 @@
-/*
- * at_mpool.c
- *
- *  Created on: 2016年3月22日
- *      Author: rengaohe
- */
-
 #include <stdio.h>
 #include <string.h>
 #include "util/at_mpool.h"

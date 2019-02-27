@@ -80,10 +80,11 @@ static void set_entry(at_entry_t *entry, at_type_t type, void *v) {
         entry->double_entry = *(double *)v;
         break;
     case STRINGTYPE:
-        str_v = (char *)v;
+        /*str_v = (char *)v;
         len = strlen(str_v);
         entry->string_entry = (char *)malloc(len + 1);
-        strncpy(entry->string_entry, str_v, len + 1);
+        strncpy(entry->string_entry, str_v, len + 1);*/
+        entry->string_entry = (char *)v;
         break;
     case OBJECTTYPE:
         entry->object_entry = v;
@@ -108,7 +109,7 @@ void *get_entry(at_entry_t *entry, at_type_t type) {
     }
 }
 
-static void free_entry(at_type_t type, at_entry_t *entry, free_func fn) {
+/*static void free_entry(at_type_t type, at_entry_t *entry, free_func fn) {
     if (type == STRINGTYPE) {
         free(entry->string_entry);
     } else if (type == OBJECTTYPE) {
@@ -123,7 +124,7 @@ static void free_entry(at_type_t type, at_entry_t *entry, free_func fn) {
 static void free_node(at_hashmap_t *map, at_node_t *node) {
     free_entry(map->key_type, &node->key, map->key_free_fn);
     free_entry(map->val_type, &node->value, map->val_free_fn);
-}
+}*/
 
 static at_boolean_t rehash(at_hashmap_t *map, at_node_t *node, at_node_t *new_buckets, int hash_mask) {
     unsigned int newIndex =  key_hashcode(map, &node->key, hash_mask);
@@ -233,13 +234,13 @@ void hashmap_set_key_equals_func(at_hashmap_t *map, equals_func fn) {
     map->key_equals_fn = fn;
 }
 
-void hashmap_set_key_free_func(at_hashmap_t *map, free_func fn) {
+/*void hashmap_set_key_free_func(at_hashmap_t *map, free_func fn) {
     map->key_free_fn = fn;
 }
 
 void hashmap_set_val_free_func(at_hashmap_t *map, free_func fn) {
     map->val_free_fn = fn;
-}
+}*/
 
 void hashmap_setloadfactor(at_hashmap_t *map, double load_factor) {
     if (load_factor <= 0) {
@@ -335,7 +336,7 @@ at_boolean_t hashmap_remove(at_hashmap_t *map, void *key) {
     if (!node_ptr->is_inuse) {
         return AT_TRUE;
     } else if (is_equals(map, &node_ptr->key, key)) {
-	free_node(map, node_ptr);
+	//free_node(map, node_ptr);
         if (node_ptr->next) {
             node_ptr->key = node_ptr->next->key;
             node_ptr->value = node_ptr->next->value;
@@ -356,7 +357,7 @@ at_boolean_t hashmap_remove(at_hashmap_t *map, void *key) {
                 if (node_ptr->next) {
                     node_ptr->next->prev = node_ptr->prev;
                 }
-                free_node(map, node_ptr);
+                //free_node(map, node_ptr);
                 free(node_ptr);
                 map->size--;
                 break;
@@ -384,7 +385,7 @@ void hashmap_free(at_hashmap_t **map_ptr) {
             if (ptr->is_inuse) {
                 at_boolean_t in_maintable = AT_TRUE;
                 while (ptr) {
-                    free_node(map, ptr);
+                    //free_node(map, ptr);
                     if (!in_maintable) {
                         free(ptr);
                     } else {

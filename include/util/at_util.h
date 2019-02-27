@@ -1,10 +1,3 @@
-/*
- * AntcityUtil.h
- *
- *  Created on: 2015年7月13日
- *      Author: herengao
- */
-
 #ifndef AT_UTIL_H_
 #define AT_UTIL_H_
 

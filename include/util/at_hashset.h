@@ -15,13 +15,15 @@ void hashset_set_hash_func(at_hashset_t *, hash_func);
 
 void hashset_set_equals_func(at_hashset_t *, equals_func);
 
-void hashset_set_free_func(at_hashset_t *, free_func);
+//void hashset_set_free_func(at_hashset_t *, free_func);
 
 at_boolean_t hashset_insert(at_hashset_t *, void *);
 
 at_boolean_t hashset_iscontain(at_hashset_t *, void *);
 
 at_boolean_t hashset_remove(at_hashset_t *, void *);
+
+void **hashset_array(at_hashset_t *);
 
 const char *hashset_error();
 

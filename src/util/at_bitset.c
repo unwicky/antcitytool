@@ -1,9 +1,3 @@
-/*
- * bitset.c
- *
- *  Created on: 2014-9-24
- *      Author: herengao
- */
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>

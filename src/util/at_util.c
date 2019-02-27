@@ -1,10 +1,3 @@
-/*
- * AntcityUtil.c
- *
- *  Created on: 2015-7-14
- *      Author: herengao
- */
-
 #include <time.h>
 #include <sys/stat.h>
 #include <stdio.h>

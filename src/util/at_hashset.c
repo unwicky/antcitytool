@@ -12,9 +12,9 @@ void hashset_set_equals_func(at_hashset_t *set, equals_func f) {
     hashmap_set_key_equals_func(set, f);
 }
 
-void hashset_set_free_func(at_hashset_t *set, free_func f) {
+/*void hashset_set_free_func(at_hashset_t *set, free_func f) {
     hashmap_set_key_free_func(set, f);
-}
+}*/
 
 at_boolean_t hashset_insert(at_hashset_t *set, void *data) {
     int placeholder = 0;
@@ -32,6 +32,25 @@ at_boolean_t hashset_iscontain(at_hashset_t *set, void *data) {
 
 at_boolean_t hashset_remove(at_hashset_t *set, void *data) {
     return hashmap_remove(set, data);
+}
+
+void **hashset_array(at_hashset_t *set) {
+    void **array = NULL, **ret;
+    int size = hashset_size(set);
+    if (size == 0) {
+        return NULL;
+    } else {
+        array = (void **)malloc((size + 1)*sizeof(void *));
+        ret = array;
+        at_map_iterator_t root_itr = hashmap_iterate(set);
+        at_map_iterator_t *itr = NULL;
+        while ((itr = hashmap_next(set, &root_itr)) != NULL) {
+            *array = itr->key;
+            array++;
+        }
+        *array = NULL;
+        return ret;
+    }
 }
 
 const char *hashset_error() {

@@ -1,10 +1,3 @@
-/*
- * at_httpclient_pool.c
- *
- *  Created on: 2016年5月13日
- *      Author: rengaohe
- */
-
 #include <stdlib.h>
 #include <curl/curl.h>
 

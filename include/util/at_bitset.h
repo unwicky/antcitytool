@@ -1,10 +1,3 @@
-/*
- * at_bitset_t.h
- *
- *  Created on: 2014-9-24
- *      Author: herengao
- */
-
 #ifndef AT_BITSET_H_
 #define AT_BITSET_H_
 

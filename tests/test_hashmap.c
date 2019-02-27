@@ -48,19 +48,16 @@ void test_remove() {
 }
 
 void test_iterate() {
-    at_hashmap_t *map = hashmap_new(64, INTTYPE, STRINGTYPE);
+    at_hashmap_t *map = hashmap_new(64, STRINGTYPE, STRINGTYPE);
     int i = 0;
-    for (i = 0; i < 10; i++) {
-	char str[10] = {0};
-	snprintf(str, 10, "hello%d", i);
-        if (!hashmap_insert(map, &i, str)) {
-            printf("%s\n", hashmap_error());
-        }
-    }
+    char *val = NULL;
+    hashmap_insert(map, "key1", "val1");
+    hashmap_insert(map, "key2", "val2");
     at_map_iterator_t primer_itr = hashmap_iterate(map);
     at_map_iterator_t *itr = NULL;
     while ((itr = hashmap_next(map, &primer_itr)) != NULL) {
-        printf("key: %d, value: %s\n", *(int *)itr->key, (char *)itr->value);
+        val = (char *)itr->value;
+        printf("key: %s, value: %s\n", (char *)itr->key, val);
     }
     hashmap_free(&map);
 }
@@ -80,17 +77,17 @@ at_boolean_t equals_node(void *v1, void *v2) {
     }
 }
 
-void free_node(void *v) {
+/*void free_node(void *v) {
     person *node = (person *)v;
     free(node->name);
     free(node);
-}
+}*/
 
 void test_complex_key() {
     at_hashmap_t *map = hashmap_new(64, OBJECTTYPE, INTTYPE);
     hashmap_set_key_hash_func(map, hash_node);
     hashmap_set_key_equals_func(map, equals_node);
-    hashmap_set_key_free_func(map, free_node);
+    //hashmap_set_key_free_func(map, free_node);
     person *node = (person *)malloc(sizeof(person));
     node->name = (char *)malloc(64);
     snprintf(node->name, 64, "%s", "node1");
@@ -105,12 +102,14 @@ void test_complex_key() {
     } else {
         printf("data is not exist\n");
     }
+    free(node->name);
+    free(node);
     hashmap_free(&map);
 }
 
 void test_complex_value() {
     at_hashmap_t *map = hashmap_new(64, INTTYPE, OBJECTTYPE);
-    hashmap_set_val_free_func(map, free_node);
+    //hashmap_set_val_free_func(map, free_node);
     person *node = (person *)malloc(sizeof(person));
     node->name = (char *)malloc(64);
     snprintf(node->name, 64, "%s", "node1");
@@ -127,6 +126,8 @@ void test_complex_value() {
             printf("data is not exist\n");
         }
     }
+    free(node->name);
+    free(node);
     hashmap_free(&map);
 }
 
