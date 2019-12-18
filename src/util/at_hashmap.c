@@ -397,6 +397,7 @@ void hashmap_free(at_hashmap_t **map_ptr) {
         }
         free(map->buckets);
         map->buckets = NULL;
+        free(map);
         *map_ptr = NULL;
     }
 }

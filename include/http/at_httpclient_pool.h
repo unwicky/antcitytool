@@ -18,7 +18,13 @@ typedef struct {
     pthread_mutex_t lock;
 } at_httpclient_pool_t;
 
-at_httpclient_pool_t *httpclient_pool_create (int);
+typedef struct {
+    const char *proxy_host;
+    int proxy_port;
+    const char *ssl_verify;
+} at_httpclient_pool_config_t;
+
+at_httpclient_pool_t *httpclient_pool_create (int, at_httpclient_pool_config_t *);
 
 at_httpclient_t *httpclient_pool_get (at_httpclient_pool_t *);
 

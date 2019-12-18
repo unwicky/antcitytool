@@ -31,6 +31,8 @@ void httpclient_set_timeout(at_httpclient_t *, long timeout);
 
 void httpclient_set_proxy(at_httpclient_t *, const char *, int);
 
+void httpclient_set_insecure(at_httpclient_t *);
+
 void httpclient_remove_signal(at_httpclient_t *); 
 
 void httpclient_reset_header(at_httpclient_t *);

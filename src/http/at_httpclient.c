@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "http/at_httpclient.h"
 
@@ -50,9 +51,13 @@ void httpclient_set_timeout(at_httpclient_t *client, long timeout) {
     curl_easy_setopt(client->handler, CURLOPT_TIMEOUT, timeout);
 }
 
-void httpclient_set_proxy(at_httpclient_t *client, const char *ip, int port) {
-    curl_easy_setopt(client->handler, CURLOPT_PROXY, ip);
+void httpclient_set_proxy(at_httpclient_t *client, const char *host, int port) {
+    curl_easy_setopt(client->handler, CURLOPT_PROXY, host);
     curl_easy_setopt(client->handler, CURLOPT_PROXYPORT, port);
+}
+
+void httpclient_set_insecure(at_httpclient_t *client) {
+    curl_easy_setopt(client->handler, CURLOPT_SSL_VERIFYPEER, false);
 }
 
 void httpclient_remove_signal(at_httpclient_t *client) {
