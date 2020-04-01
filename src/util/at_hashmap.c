@@ -132,6 +132,7 @@ static at_boolean_t rehash(at_hashmap_t *map, at_node_t *node, at_node_t *new_bu
     if (!ptr->is_inuse) {
 	ptr->key = node->key;
         ptr->value = node->value;
+	ptr->is_inuse = node->is_inuse;
     } else {
         at_node_t *new_node = (at_node_t *)malloc(sizeof(at_node_t));
         if (!new_node) {
@@ -139,6 +140,7 @@ static at_boolean_t rehash(at_hashmap_t *map, at_node_t *node, at_node_t *new_bu
 	}
         new_node->key = node->key;
         new_node->value = node->value;
+	new_node->is_inuse = node->is_inuse;
 	new_node->prev = ptr;
         new_node->next = ptr->next;
         if (ptr->next) {
