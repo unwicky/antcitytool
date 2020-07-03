@@ -34,7 +34,7 @@ jobs:
     - name: compile libxml2
       run: |
         cd libxml2
-        ${CUR_DIR}=`pwd`
+        export ${CUR_DIR}=`pwd`
         echo "./configure --prefix=${CUR_DIR}/dependency"
         ./autogen.sh
         ./configure --prefix=${CUR_DIR}/dependency
