@@ -29,30 +29,20 @@ jobs:
     - name: set dependency directory
       run: |
         mkdir dependency
+        CUR_DIR=`pwd`
+        export DEP_INSTALL_DIR=${CUR_DIR}/dependency
+        echo ${DEP_INSTALL_DIR}
         ls
-      
-    - name: compile libxml2
-      run: |
-        cd libxml2
-        export ${CUR_DIR}=`pwd`
-        echo "./configure --prefix=${CUR_DIR}/dependency"
-        ./autogen.sh
-        ./configure --prefix=${CUR_DIR}/dependency
-        make
-        make install
-        cd ..
       
     - name: compile curl
       run: |
         cd curl
-        ${CUR_DIR}=`pwd`
         ./buildconf
-        ./configure --prefix=${CUR_DIR}/dependency
+        ./configure --prefix=${DEP_INSTALL_DIR}
         make
         make install
         cd ..
     
     - name: make
       run: |
-        ${CUR_DIR}=`pwd`
-        make CUSTOM_INSTALL_DIR=${CUR_DIR}/dependency
+        make CUSTOM_INSTALL_DIR=${DEP_INSTALL_DIR}
