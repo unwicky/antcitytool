@@ -29,6 +29,7 @@ jobs:
         mkdir dependency
         CUR_DIR=`pwd`
         export DEP_INSTALL_DIR=${CUR_DIR}/dependency
+        ls
       
     - name: compile libxml2
       run: |
