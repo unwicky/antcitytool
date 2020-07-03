@@ -45,7 +45,7 @@ jobs:
         CUR_DIR=`pwd`
         cd curl
         ./buildconf
-        ./configure --prefix=${CUR_DIR}/dependency
+        ./configure --prefix=${CUR_DIR}/dependency --libdir=${CUR_DIR}/dependency/lib
         make
         make install
         cd ..
