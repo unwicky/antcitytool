@@ -2,8 +2,8 @@
 #define AT_XMLPARSER_H_
 
 #include <string.h>
-#include <libxml2/parser.h>
-#include <libxml2/xpath.h>
+#include <libxml/parser.h>
+#include <libxml/xpath.h>
 
 #include "util/at_string.h"
 #include "util/at_vector.h"
