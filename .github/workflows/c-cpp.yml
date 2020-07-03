@@ -37,7 +37,7 @@ jobs:
     - name: compile curl
       run: |
         cd curl
-        chmod u+x configure
+        ./buildconf
         ./configure --prefix=${DEP_INSTALL_DIR}
         make
         make install
