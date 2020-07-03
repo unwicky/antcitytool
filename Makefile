@@ -5,7 +5,7 @@ endif
 OBJECTS	=	at_util.o at_xmlparser.o at_vector.o at_string.o at_httpclient.o at_httpclient_pool.o \
     at_bitset.o at_hashmap.o at_hashset.o at_queue.o at_stack.o at_thread_pool.o
 LIBS	=	-lpthread -L${CUSTOM_INSTALL_DIR}/lib -lcurl -lxml2
-INCLUDE	=	-Iinclude -I/usr/local/include -I${CUSTOM_INSTALL_DIR}/include
+INCLUDE	=	-Iinclude -I/usr/local/include -I${CUSTOM_INSTALL_DIR}/include -I${CUSTOM_INSTALL_DIR}/include/libxml2
 OUTPUT	=	libantcitytools.so
 CC	=	gcc -g -fpic
 	
