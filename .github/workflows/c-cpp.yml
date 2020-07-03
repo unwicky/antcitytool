@@ -13,5 +13,40 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      
+    - uses: actions/checkout@v2
+      with:
+        repository: 'GNOME/libxml2'
+        ref: 'v2.9.10'
+      
+    - uses: actions/checkout@v2
+      with:
+        repository: 'curl/curl'
+        ref: 'curl-7_71_1'
+      
+    - name: set dependency directory
+      run: |
+        mkdir dependency
+        CUR_DIR=`pwd`
+        export DEP_INSTALL_DIR=${CUR_DIR}/dependency
+      
+    - name: compile libxml2
+      run: |
+        cd libxml2
+        ./autogen.sh
+        ./configure --prefix=${DEP_INSTALL_DIR}
+        make
+        make install
+        cd ..
+      
+    - name: compile curl
+      run: |
+        cd curl
+        chmod u+x configure
+        ./configure --prefix=${DEP_INSTALL_DIR}
+        make
+        make install
+        cd ..
+    
     - name: make
-      run: make
+      run: make INSTALLDIR=${DEP_INSTALL_DIR}
