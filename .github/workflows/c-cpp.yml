@@ -32,8 +32,8 @@ jobs:
       
     - name: compile libxml2
       run: |
-        cd libxml2
         CUR_DIR=`pwd`
+        cd libxml2
         ./autogen.sh
         ./configure --without-python --prefix=${CUR_DIR}/dependency --libdir=${CUR_DIR}/dependency/lib
         make
@@ -42,8 +42,8 @@ jobs:
       
     - name: compile curl
       run: |
-        cd curl
         CUR_DIR=`pwd`
+        cd curl
         ./buildconf
         ./configure --prefix=${CUR_DIR}/dependency
         make
