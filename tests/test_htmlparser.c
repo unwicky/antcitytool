@@ -1,7 +1,7 @@
 #define _GNU_SOURCE
 #include <stdio.h>
 #include <string.h>
-#include <libxml/parser.h>
+#include <libxml2/parser.h>
 
 #include "util/at_xmlparser.h"
 
