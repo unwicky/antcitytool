@@ -16,13 +16,15 @@ jobs:
       
     - uses: actions/checkout@v2
       with:
-        repository: 'GNOME/libxml2'
-        ref: 'v2.9.10'
+        repository: GNOME/libxml2
+        ref: v2.9.10
+        path: libxml2
       
     - uses: actions/checkout@v2
       with:
-        repository: 'curl/curl'
-        ref: 'curl-7_71_1'
+        repository: curl/curl
+        ref: curl-7_71_1
+        path: curl
       
     - name: set dependency directory
       run: |
