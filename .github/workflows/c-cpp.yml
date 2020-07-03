@@ -29,7 +29,9 @@ jobs:
     - name: set dependency directory
       run: |
         mkdir dependency
-        ls
+        CUR_DIR=`pwd`
+        ls ${CUR_DIR}/dependency/lib
+        ls ${CUR_DIR}/dependency/include
       
     - name: compile libxml2
       run: |
