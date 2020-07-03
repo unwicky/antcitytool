@@ -29,9 +29,6 @@ jobs:
     - name: set dependency directory
       run: |
         mkdir dependency
-        CUR_DIR=`pwd`
-        ls ${CUR_DIR}/dependency/lib
-        ls ${CUR_DIR}/dependency/include
       
     - name: compile libxml2
       run: |
@@ -56,4 +53,6 @@ jobs:
     - name: make
       run: |
         CUR_DIR=`pwd`
+        ls ${CUR_DIR}/dependency/lib
+        ls ${CUR_DIR}/dependency/include
         make CUSTOM_INSTALL_DIR=${CUR_DIR}/dependency
