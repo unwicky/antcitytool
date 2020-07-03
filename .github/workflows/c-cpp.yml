@@ -54,5 +54,5 @@ jobs:
       run: |
         CUR_DIR=`pwd`
         ls ${CUR_DIR}/dependency/lib
-        ls ${CUR_DIR}/dependency/include
+        ls ${CUR_DIR}/dependency/include/libxml2
         make CUSTOM_INSTALL_DIR=${CUR_DIR}/dependency
