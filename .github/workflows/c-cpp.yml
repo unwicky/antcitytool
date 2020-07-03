@@ -29,6 +29,7 @@ jobs:
     - name: set dependency directory
       run: |
         mkdir dependency
+        ls
       
     - name: compile libxml2
       run: |
