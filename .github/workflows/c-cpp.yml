@@ -31,6 +31,16 @@ jobs:
         mkdir dependency
         ls
       
+    - name: compile libxml2
+      run: |
+        cd libxml2
+        CUR_DIR=`pwd`
+        ./autogen.sh
+        ./configure --prefix=${CUR_DIR}/dependency
+        make
+        make install
+        cd ..
+      
     - name: compile curl
       run: |
         cd curl
