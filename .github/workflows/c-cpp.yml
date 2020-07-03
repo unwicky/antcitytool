@@ -49,4 +49,4 @@ jobs:
         cd ..
     
     - name: make
-      run: make INSTALLDIR=${DEP_INSTALL_DIR}
+      run: make CUSTOM_INSTALL_DIR=${DEP_INSTALL_DIR}
