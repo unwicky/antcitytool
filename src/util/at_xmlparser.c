@@ -1,6 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
-#include <libxml/HTMLparser.h>
+#include <libxml2/HTMLparser.h>
 
 #include "util/at_xmlparser.h"
 
