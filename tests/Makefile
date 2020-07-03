@@ -1,6 +1,9 @@
-LIBS	=	-lpthread -L/usr/local/lib/x86_64-linux-gnu -L/usr/local/lib/libxml2 \
-	-lxml2 -L/url/lib/libcurl -lcurl
-INCLUDE	=	-I../include -I/usr/local/include -I/usr/local/include/libxml2
+ifndef CUSTOM_INSTALL_DIR
+	CUSTOM_INSTALL_DIR=/usr/local
+endif
+
+LIBS	=	-lpthread -L${CUSTOM_INSTALL_DIR}/lib -lxml2 -lcurl
+INCLUDE	=	-I../include -I/usr/local/include -I${CUSTOM_INSTALL_DIR}/include -I${CUSTOM_INSTALL_DIR}/include/libxml2
 OUTPUT  = XmlParser HtmlParser Vector String HttpClient Bitset \
     Util HashMap HashSet Queue Stack ThreadPool
 CC = gcc -g
