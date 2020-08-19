@@ -127,7 +127,8 @@ static void free_node(at_hashmap_t *map, at_node_t *node) {
 }*/
 
 static at_boolean_t rehash(at_hashmap_t *map, at_node_t *node, at_node_t *new_buckets, int hash_mask) {
-    unsigned int newIndex =  key_hashcode(map, &node->key, hash_mask);
+    void *raw_key = get_entry(&node->key, map->key_type);
+    unsigned int newIndex =  key_hashcode(map, raw_key, hash_mask);
     at_node_t *ptr = &new_buckets[newIndex];
     if (!ptr->is_inuse) {
 	ptr->key = node->key;
